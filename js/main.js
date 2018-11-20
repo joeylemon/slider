@@ -56,10 +56,10 @@ var locs = {
 };
 
 // Constant values that will never change
-var chip_diameter = 3.9; // cm
+var chip_diameter = 3.96875; // cm
 var origin = {
     x: 37.5,
-    y: 25 - (chip_diameter / 2)
+    y: 25 - chip_diameter
 };
 var gravity = 9.79729;
 
@@ -187,3 +187,28 @@ class Computations {
 };
 // Initialize the computations constant
 const Calculations = new Computations();
+
+/**
+ * Prints all possible deflection values to console
+ */
+function printAllDeflectionValues() {
+    var vals = new Array();
+    for(loc in locs) {
+        if(loc.indexOf("1") == -1){
+            var deflection = Calculations.deflectionToLoc(loc).toFixed(3);
+            var side = "center";
+            if(loc.indexOf("3") != -1){
+                side = "side";
+            }else if(loc.indexOf("EF") != -1){
+                side = "EF";
+            }
+            vals.push({deflection: deflection, side: side});
+        }
+    }
+
+    var list = ""
+    for(var i = vals.length - 1; i >= 0; i--){
+        list += vals[i].deflection + "mm (" + vals[i].side + ")\n";
+    }
+    console.log(list);
+}

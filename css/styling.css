@@ -53,6 +53,10 @@ body {
     margin-top: 7px;
 }
 
+.nav .nav-block:active {
+    transform: scale(0.9, 0.9);
+}
+
 .nav img {
     width: 35px;
     height: 35px;

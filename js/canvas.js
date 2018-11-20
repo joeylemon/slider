@@ -46,7 +46,7 @@ ctx.strokeStyle = "#000";
 var canvasLocs = {
     origin: {
         x: 166,
-        y: 572
+        y: 582
     },
     A1: {
         x: 58,
