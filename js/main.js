@@ -61,11 +61,12 @@ var origin = {
     x: 37.5,
     y: 25 - (chip_diameter / 2)
 };
+var gravity = 9.79729;
 
 // Values used in calculations
 // Will likely change due to user input
 var math_values = {
-    spring_constant: (0.457 * 9.81) / (0.0174625),
+    spring_constant: (0.457 * gravity) / (0.0174625),
     coeff_kinetic_fric: 0.4667,
     coeff_resititution: 0.8,
     chip_mass: 0.0115,
@@ -131,18 +132,18 @@ class Computations {
         if(loc != "EF"){
             // Use conservation of energy
             // 0.5kx^2 = µmgd
-            var deflection = Math.sqrt( (math_values.coeff_kinetic_fric * math_values.chip_mass * 9.81 * dist) / (0.5 * math_values.spring_constant) );
+            var deflection = Math.sqrt( (math_values.coeff_kinetic_fric * math_values.chip_mass * gravity * dist) / (0.5 * math_values.spring_constant) );
             return Converter.mToMM(deflection);
         }else{
             // Since the user wants to hit the ef chip, use conservation of energy
             // and conservation of momentum since there is a collision
             var ef_move_dist = Converter.cmToM(this.distance(locs.EF, {x: 37.5, y: 140}));
     
-            var v_ef_final = Math.sqrt( (math_values.coeff_kinetic_fric * math_values.chip_mass * 9.81 * ef_move_dist) / (0.5 * math_values.chip_mass) );
+            var v_ef_final = Math.sqrt( (math_values.coeff_kinetic_fric * math_values.chip_mass * gravity * ef_move_dist) / (0.5 * math_values.chip_mass) );
     
             var v_chip_initial = (math_values.chip_mass * v_ef_final + math_values.ef_chip_mass * v_ef_final) / (math_values.chip_mass + math_values.chip_mass * math_values.coeff_resititution);
     
-            var v_chip_launch = Math.sqrt( (0.5 * math_values.chip_mass * Math.pow(v_chip_initial, 2) + math_values.coeff_kinetic_fric * math_values.chip_mass * 9.81 * dist) / (0.5 * math_values.chip_mass) );
+            var v_chip_launch = Math.sqrt( (0.5 * math_values.chip_mass * Math.pow(v_chip_initial, 2) + math_values.coeff_kinetic_fric * math_values.chip_mass * gravity * dist) / (0.5 * math_values.chip_mass) );
     
             var deflection = Math.sqrt( (0.5 * math_values.chip_mass * Math.pow(v_chip_launch, 2)) / (0.5 * math_values.spring_constant) );
     
