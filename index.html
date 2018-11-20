@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Slider</title>
+        <link rel="stylesheet" href="css/styling.css" />
+        <meta name="viewport" content="height=device-height, 
+                          width=device-width, initial-scale=1.0, 
+                          minimum-scale=1.0, maximum-scale=1.0, 
+                          user-scalable=no, target-densitydpi=device-dpi">
+    </head>
+    <body>
+        <div class="nav">
+            <div class="nav-block active" id="nav-slider">
+                <img src="images/slider.png">
+            </div>
+            <div class="nav-block" id="nav-edit">
+                <img src="images/edit.png">
+            </div>
+        </div>
+        <div class="container" id="nav-slider-div">
+            <div class="header">The Slidinator&reg;</div>
+            <div style="display: inline-block;">
+                <table class="info">
+                    <tr>
+                        <th>Distance</th>
+                        <td id="dist">0.000 cm</td>
+                    </tr>
+                    <tr>
+                        <th>Angle</th>
+                        <td id="angle">0.000&deg;</td>
+                    </tr>
+                    <tr>
+                        <th>Deflection</th>
+                        <td id="deflection">0.000 mm</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="board-container">
+                <div class="ef-chip" id="ef-chip">EF</div>
+                <table class="board" style="margin-top: 15px;">
+                    <tr>
+                        <td>D1</td>
+                        <td>D2</td>
+                        <td>D3</td>
+                    </tr>
+                    <tr>
+                        <td>C1</td>
+                        <td>C2</td>
+                        <td>C3</td>
+                    </tr>
+                    <tr>
+                        <td>B1</td>
+                        <td>B2</td>
+                        <td>B3</td>
+                    </tr>
+                    <tr>
+                        <td>A1</td>
+                        <td>A2</td>
+                        <td>A3</td>
+                    </tr>
+                    <tr>
+                        <th colspan="3" style="background-color: #c1c1c1;">Dead Zone</th>
+                    </tr>
+                    <tr>
+                        <th colspan="3" style="background-color: #00d400;">Device Zone</th>
+                    </tr>
+                </table>
+                <canvas id="canvas"></canvas>
+            </div>
+        </div>
+        <div class="container" id="nav-edit-div" style="display: none;">
+            <div class="header">The Slidinator&reg;</div>
+            <div style="display: inline-block;">
+                <table class="info">
+                    <tr>
+                        <th>Kinetic Coeff.</th>
+                        <td><input id="coeff" type="number"></td>
+                    </tr>
+                    <tr>
+                        <th>Restitution Coeff.</th>
+                        <td><input id="rest-coeff" type="number"></td>
+                    </tr>
+                    <tr>
+                        <th>Spring Constant</th>
+                        <td><input id="constant" type="number"></td>
+                    </tr>
+                    <tr>
+                        <th>Chip Mass (g)</th>
+                        <td><input id="weight" type="number"></td>
+                    </tr>
+                    <tr>
+                        <th>EF Chip Mass (g)</th>
+                        <td><input id="ef-mass" type="number"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/inputs.js"></script>
+    <script type="text/javascript" src="js/edit.js"></script>
+    <script type="text/javascript" src="js/canvas.js"></script>
+
+</html>
