@@ -76,25 +76,26 @@
                 <table class="info">
                     <tr>
                         <th>Kinetic Coeff.</th>
-                        <td><input id="coeff" type="number"></td>
+                        <td><input class="edit-input" id="coeff_kinetic_fric" type="number"></td>
                     </tr>
                     <tr>
                         <th>Restitution Coeff.</th>
-                        <td><input id="rest-coeff" type="number"></td>
+                        <td><input class="edit-input" id="coeff_resititution" type="number"></td>
                     </tr>
                     <tr>
                         <th>Spring Constant</th>
-                        <td><input id="constant" type="number"></td>
+                        <td><input id="spring_constant" type="number"></td>
                     </tr>
                     <tr>
                         <th>Chip Mass (g)</th>
-                        <td><input id="weight" type="number"></td>
+                        <td><input class="edit-input" id="chip_mass" type="number"></td>
                     </tr>
                     <tr>
                         <th>EF Chip Mass (g)</th>
-                        <td><input id="ef-mass" type="number"></td>
+                        <td><input class="edit-input" id="ef_chip_mass" type="number"></td>
                     </tr>
                 </table>
+                <button onclick="resetStorage()">Reset Values</button>
             </div>
         </div>
     </body>

@@ -76,8 +76,9 @@ body {
     background-color: #58595B;
     color: #fff;
     font-family: lemon;
-    font-size: 35px;
+    font-size: 30px;
     letter-spacing: 3px;
+    padding-top: 8px;
     margin-bottom: 20px;
     box-shadow: 1px 3px 5px rgba(0,0,0,0.3);
 }
@@ -85,7 +86,7 @@ body {
 .board-container {
     display: inline-block;
     position: relative;
-    width: 375px;
+    width: 336px;
 }
 
 .board-container canvas {
@@ -132,7 +133,7 @@ body {
 .ef-chip {
     position: absolute;
     top: 218px;
-    left: 168px;
+    left: 148px;
     width: 35px;
     height: 35px;
     border-radius: 50%;
@@ -190,4 +191,16 @@ body {
     width: 100%;
     height: 100%;
     text-align: right;
+}
+
+button {
+    width: 335px;
+    height: 60px;
+    font-family: roboto;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 15px;
+    background: #fff;
+    border: 3px solid #58595B;
+    color: #1d1d1d;
 }

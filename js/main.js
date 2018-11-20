@@ -1,3 +1,4 @@
+// An array of all locations on the board
 var locs = {
     A1: {
         x: 12.5,
@@ -54,73 +55,134 @@ var locs = {
     },
 };
 
+// Constant values that will never change
 var chip_diameter = 3.9; // cm
 var origin = {
     x: 37.5,
     y: 25 - (chip_diameter / 2)
 };
 
-var spring_constant = (0.457 * 9.81) / (0.0174625); // N/m
-var coeff_kinetic_fric = 0.4667;
-var coeff_resititution = 0.8;
-var chip_mass = 0.0115; // kg
-var ef_chip_mass = 0.015;
+// Values used in calculations
+// Will likely change due to user input
+var math_values = {
+    spring_constant: (0.457 * 9.81) / (0.0174625),
+    coeff_kinetic_fric: 0.4667,
+    coeff_resititution: 0.8,
+    chip_mass: 0.0115,
+    ef_chip_mass: 0.015
+}
 
+// A class to convert values
 class Convertions {
+    /**
+     * Converts from centimeters to meters
+     * 
+     * @param {number} cm The amount of centimeters
+     * @return {number} The amount of meters
+     */
     cmToM(cm) {
         return cm / 100;
     }
 
+    /**
+     * Converts from meters to millimeters
+     * 
+     * @param {number} m The amount of meters
+     * @return {number} The amount of millimeters
+     */
     mToMM(m) {
         return m * 1000;
     }
 
+    /**
+     * Converts from grams to kilograms
+     * 
+     * @param {number} g The amount of grams
+     * @return {number} The amount of kilograms
+     */
     gToKg(g) {
         return g / 1000;
     }
 
+    /**
+     * Converts from kilograms to grams
+     * 
+     * @param {number} kg The amount of kilograms
+     * @return {number} The amount of grams
+     */
     kgToG(kg) {
         return kg * 1000;
     }
 };
+// Initialize the converter constant
 const Converter = new Convertions();
 
+// A class to compute device settings
 class Computations {
+    /**
+     * Gets how much deflection the spring needs to shoot the chip
+     * to a location
+     * 
+     * @param {Object} loc The location to get the deflection for
+     * @return {number} The amount of deflection in millimeters
+     */
     deflectionToLoc(loc) {
         var dist = Converter.cmToM(this.distanceToLoc(loc));
         if(loc != "EF"){
-            /* Conservation of Energy */
-            var deflection = Math.sqrt( (coeff_kinetic_fric * chip_mass * 9.81 * dist) / (0.5 * spring_constant) );
+            // Use conservation of energy
+            // 0.5kx^2 = µmgd
+            var deflection = Math.sqrt( (math_values.coeff_kinetic_fric * math_values.chip_mass * 9.81 * dist) / (0.5 * math_values.spring_constant) );
             return Converter.mToMM(deflection);
         }else{
-            /* Conservation of Energy and Conservation of Momentum */
+            // Since the user wants to hit the ef chip, use conservation of energy
+            // and conservation of momentum since there is a collision
             var ef_move_dist = Converter.cmToM(this.distance(locs.EF, {x: 37.5, y: 140}));
     
-            var v_ef_final = Math.sqrt( (coeff_kinetic_fric * chip_mass * 9.81 * ef_move_dist) / (0.5 * chip_mass) );
+            var v_ef_final = Math.sqrt( (math_values.coeff_kinetic_fric * math_values.chip_mass * 9.81 * ef_move_dist) / (0.5 * math_values.chip_mass) );
     
-            var v_chip_initial = (chip_mass * v_ef_final + ef_chip_mass * v_ef_final) / (chip_mass + chip_mass * coeff_resititution);
+            var v_chip_initial = (math_values.chip_mass * v_ef_final + math_values.ef_chip_mass * v_ef_final) / (math_values.chip_mass + math_values.chip_mass * math_values.coeff_resititution);
     
-            var v_chip_launch = Math.sqrt( (0.5 * chip_mass * Math.pow(v_chip_initial, 2) + coeff_kinetic_fric * chip_mass * 9.81 * dist) / (0.5 * chip_mass) );
+            var v_chip_launch = Math.sqrt( (0.5 * math_values.chip_mass * Math.pow(v_chip_initial, 2) + math_values.coeff_kinetic_fric * math_values.chip_mass * 9.81 * dist) / (0.5 * math_values.chip_mass) );
     
-            var deflection = Math.sqrt( (0.5 * chip_mass * Math.pow(v_chip_launch, 2)) / (0.5 * spring_constant) );
+            var deflection = Math.sqrt( (0.5 * math_values.chip_mass * Math.pow(v_chip_launch, 2)) / (0.5 * math_values.spring_constant) );
     
             return Converter.mToMM(deflection);
         }
     }
     
+    /**
+     * Gets the distance between two points
+     * 
+     * @param {Object} p1 The first coordinates
+     * @param {Object} p2 The second coordinates
+     * @return {number} The distance between coordinates
+     */
     distance(p1, p2) {
         return Math.hypot(p2.x - p1.x, p2.y - p1.y);
     }
     
+    /**
+     * Gets the distance to a location
+     * 
+     * @param {Object} loc The location object
+     * @return {number} The distance in centimeters
+     */
     distanceToLoc(loc) {
         var loc = locs[loc.toUpperCase()];
         return this.distance(origin, loc);
     }
     
+    /**
+     * Gets the angle to a location
+     * 
+     * @param {Object} loc The location object
+     * @return {number} The angle in degrees
+     */
     angleToLoc(loc) {
         var loc = locs[loc.toUpperCase()];
         // arctan(delta y / delta x)
         return 90 - Math.atan(Math.abs((loc.y - origin.y) / (loc.x - origin.x))) * 180 / Math.PI;
     }
 };
+// Initialize the computations constant
 const Calculations = new Computations();

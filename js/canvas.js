@@ -1,3 +1,4 @@
+// Get optimal pixel ratio for current device
 var PIXEL_RATIO = (function () {
     var ctx = document.createElement("canvas").getContext("2d"),
         dpr = window.devicePixelRatio || 1,
@@ -10,9 +11,11 @@ var PIXEL_RATIO = (function () {
     return dpr / bsr;
 })();
 
+// Values to hold opacity of the line
 var opacity = 1;
 var opacityTask;
 
+// Create a canvas with optimal pixel ratios
 createHiDPICanvas = function (w, h, ratio) {
     if (!ratio) {
         ratio = PIXEL_RATIO;
@@ -26,73 +29,84 @@ createHiDPICanvas = function (w, h, ratio) {
     return can;
 }
 
-//Create canvas with the device resolution.
+// Create canvas with the device resolution.
 var canvas = createHiDPICanvas($("#canvas").width(), $("#canvas").height());
+
+// Get the canvas context
 var ctx = canvas.getContext("2d");
+
+// Set the canvas styles
 ctx.translate(0.5, 0.5);
 ctx.lineCap = "round";
 ctx.fillStyle = "#000";
 ctx.strokeStyle = "#000";
 
+// An array to hold canvas locations
+// These correspond to the actual locations
 var canvasLocs = {
     origin: {
-        x: 186,
+        x: 166,
         y: 572
     },
     A1: {
-        x: 78,
+        x: 58,
         y: 415
     },
     A2: {
-        x: 187.5,
+        x: 167.5,
         y: 415
     },
     A3: {
-        x: 298,
+        x: 278,
         y: 415
     },
     B1: {
-        x: 76,
+        x: 56,
         y: 305
     },
     B2: {
-        x: 187.5,
+        x: 167.5,
         y: 305
     },
     B3: {
-        x: 298,
+        x: 278,
         y: 305
     },
     C1: {
-        x: 76,
+        x: 56,
         y: 195
     },
     C2: {
-        x: 187.5,
+        x: 167.5,
         y: 195
     },
     C3: {
-        x: 298,
+        x: 278,
         y: 195
     },
     D1: {
-        x: 76,
+        x: 56,
         y: 86
     },
     D2: {
-        x: 187.5,
+        x: 167.5,
         y: 86
     },
     D3: {
-        x: 298,
+        x: 278,
         y: 86
     },
     EF: {
-        x: 187.5,
+        x: 167.5,
         y: 245
     },
 };
 
+/**
+ * Draw a line to a location
+ * 
+ * @param {Object} loc The location object
+ */
 function drawToLoc(loc) {
     if(opacityTask){
         clearInterval(opacityTask);
@@ -112,6 +126,12 @@ function drawToLoc(loc) {
     }, 60);
 }
 
+/**
+ * Draw a line that gradually extends to a destination
+ * 
+ * @param {Object} from The origin coordinates
+ * @param {Objeect} to The destination coordinates
+ */
 function drawAnimatedLine(from, to) {
     var b = jQuery.extend(true, {}, from);
     var dx = (to.x - b.x);
@@ -147,6 +167,12 @@ function drawAnimatedLine(from, to) {
     }, 10);
 }
 
+/**
+ * Draw a line with an arrow head
+ * 
+ * @param {Object} from The origin coordinates
+ * @param {Objeect} to The destination coordinates
+ */
 function drawLineWithArrow(from, to) {
     ctx.beginPath();
     ctx.setLineDash([5, 15]);
@@ -157,6 +183,14 @@ function drawLineWithArrow(from, to) {
     drawArrowhead(ctx, from, to, 10);
 }
 
+/**
+ * Draw an arrow head
+ * 
+ * @param {Object} context The canvas context
+ * @param {Object} from The origin coordinates
+ * @param {Object} to The destination coordinates
+ * @param {number} radius The head radius
+ */
 function drawArrowhead(context, from, to, radius) {
     var x_center = to.x;
     var y_center = to.y;
