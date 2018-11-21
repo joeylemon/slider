@@ -1,59 +1,5 @@
-// An array of all locations on the board
-var locs = {
-    A1: {
-        x: 12.5,
-        y: 62.5
-    },
-    A2: {
-        x: 37.5,
-        y: 62.5
-    },
-    A3: {
-        x: 62.5,
-        y: 62.5
-    },
-    B1: {
-        x: 12.5,
-        y: 87.5
-    },
-    B2: {
-        x: 37.5,
-        y: 87.5
-    },
-    B3: {
-        x: 62.5,
-        y: 87.5
-    },
-    C1: {
-        x: 12.5,
-        y: 112.5
-    },
-    C2: {
-        x: 37.5,
-        y: 112.5
-    },
-    C3: {
-        x: 62.5,
-        y: 112.5
-    },
-
-    D1: {
-        x: 12.5,
-        y: 137.5
-    },
-    D2: {
-        x: 37.5,
-        y: 137.5
-    },
-    D3: {
-        x: 62.5,
-        y: 137.5
-    },
-    EF: {
-        x: 37.5,
-        y: 100
-    },
-};
+// An array of all possible locations on the board
+var locs={A1:{x:12.5,y:62.5},A2:{x:37.5,y:62.5},A3:{x:62.5,y:62.5},B1:{x:12.5,y:87.5},B2:{x:37.5,y:87.5},B3:{x:62.5,y:87.5},C1:{x:12.5,y:112.5},C2:{x:37.5,y:112.5},C3:{x:62.5,y:112.5},D1:{x:12.5,y:137.5},D2:{x:37.5,y:137.5},D3:{x:62.5,y:137.5},EF:{x:37.5,y:100}};
 
 // Constant values that will never change
 var chip_diameter = 3.96875; // cm
@@ -131,22 +77,36 @@ class Computations {
         var dist = Converter.cmToM(this.distanceToLoc(loc));
         if(loc != "EF"){
             // Use conservation of energy
+
             // 0.5kx^2 = µmgd
             var deflection = Math.sqrt( (math_values.coeff_kinetic_fric * math_values.chip_mass * gravity * dist) / (0.5 * math_values.spring_constant) );
+
+            // Return deflection in millimeters
             return Converter.mToMM(deflection);
         }else{
             // Since the user wants to hit the ef chip, use conservation of energy
             // and conservation of momentum since there is a collision
-            var ef_move_dist = Converter.cmToM(this.distance(locs.EF, {x: 37.5, y: 140}));
-    
+
+            // The intended location where the ef chip will come to rest
+            var target = {x: 37.5, y: 140};
+
+            // Get the distance the ef chip needs to move
+            var ef_move_dist = Converter.cmToM(this.distance(locs.EF, target));
+
+            // 0.5mv^2 = µmgd
             var v_ef_final = Math.sqrt( (math_values.coeff_kinetic_fric * math_values.chip_mass * gravity * ef_move_dist) / (0.5 * math_values.chip_mass) );
-    
+
+            // mv + mv = mv + mv
+            // coefficient of restitution
             var v_chip_initial = (math_values.chip_mass * v_ef_final + math_values.ef_chip_mass * v_ef_final) / (math_values.chip_mass + math_values.chip_mass * math_values.coeff_resititution);
-    
+
+            // 0.5mv^2 = 0.5mv^2 + µmgd
             var v_chip_launch = Math.sqrt( (0.5 * math_values.chip_mass * Math.pow(v_chip_initial, 2) + math_values.coeff_kinetic_fric * math_values.chip_mass * gravity * dist) / (0.5 * math_values.chip_mass) );
-    
+
+            // 0.5kx^2 = 0.5mv^2
             var deflection = Math.sqrt( (0.5 * math_values.chip_mass * Math.pow(v_chip_launch, 2)) / (0.5 * math_values.spring_constant) );
     
+            // Return deflection in millimeters
             return Converter.mToMM(deflection);
         }
     }

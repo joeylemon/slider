@@ -43,64 +43,7 @@ ctx.strokeStyle = "#000";
 
 // An array to hold canvas locations
 // These correspond to the actual locations
-var canvasLocs = {
-    origin: {
-        x: 166,
-        y: 582
-    },
-    A1: {
-        x: 58,
-        y: 415
-    },
-    A2: {
-        x: 167.5,
-        y: 415
-    },
-    A3: {
-        x: 278,
-        y: 415
-    },
-    B1: {
-        x: 56,
-        y: 305
-    },
-    B2: {
-        x: 167.5,
-        y: 305
-    },
-    B3: {
-        x: 278,
-        y: 305
-    },
-    C1: {
-        x: 56,
-        y: 195
-    },
-    C2: {
-        x: 167.5,
-        y: 195
-    },
-    C3: {
-        x: 278,
-        y: 195
-    },
-    D1: {
-        x: 56,
-        y: 86
-    },
-    D2: {
-        x: 167.5,
-        y: 86
-    },
-    D3: {
-        x: 278,
-        y: 86
-    },
-    EF: {
-        x: 167.5,
-        y: 245
-    },
-};
+var canvasLocs={origin:{x:166,y:582},A1:{x:58,y:415},A2:{x:167.5,y:415},A3:{x:278,y:415},B1:{x:56,y:305},B2:{x:167.5,y:305},B3:{x:278,y:305},C1:{x:56,y:195},C2:{x:167.5,y:195},C3:{x:278,y:195},D1:{x:56,y:86},D2:{x:167.5,y:86},D3:{x:278,y:86},EF:{x:167.5,y:245}};
 
 /**
  * Draw a line to a location
