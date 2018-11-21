@@ -3,8 +3,6 @@
  * @author Joey Lemon
  */
 
-
-
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
