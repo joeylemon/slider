@@ -1,3 +1,10 @@
+/**
+ * @file Handles the edit menu, allowing user to edit values used in calculations
+ * @author Joey Lemon
+ */
+
+
+ 
 // Listen for nav bar touch to change menu
 var touchmove;
 $('#nav-slider, #nav-edit').on('touchend', function (e) {

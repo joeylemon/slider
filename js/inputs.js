@@ -1,3 +1,10 @@
+/**
+ * @file Listens for user's inputs on the board to perform calculations
+ * @author Joey Lemon
+ */
+
+
+
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {

@@ -1,3 +1,10 @@
+/**
+ * @file Handles the graphics overlay on the board
+ * @author Joey Lemon
+ */
+
+
+ 
 // Get optimal pixel ratio for current device
 var PIXEL_RATIO = (function () {
     var ctx = document.createElement("canvas").getContext("2d"),
