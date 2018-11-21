@@ -11,6 +11,7 @@
                           user-scalable=no, target-densitydpi=device-dpi">
     </head>
     <body>
+        <!-- Nav bar at bottom of screen -->
         <div class="nav">
             <div class="nav-block active" id="nav-slider">
                 <img src="images/slider.png">
@@ -19,8 +20,13 @@
                 <img src="images/edit.png">
             </div>
         </div>
+
+        <!-- Top header -->
+        <div class="header">The Slidinator&reg;</div>
+
+        <!-- Menu to contain board with locations -->
         <div class="container" id="nav-slider-div">
-            <div class="header">The Slidinator&reg;</div>
+            <!-- Information table -->
             <div style="display: inline-block;">
                 <table class="info">
                     <tr>
@@ -37,6 +43,8 @@
                     </tr>
                 </table>
             </div>
+
+            <!-- Board with locations -->
             <div class="board-container">
                 <div class="ef-chip" id="ef-chip">EF</div>
                 <table class="board" style="margin-top: 15px;">
@@ -67,11 +75,15 @@
                         <th colspan="3" style="background-color: #00d400;">Device Zone</th>
                     </tr>
                 </table>
+
+                <!-- Canvas to draw lines on top of board -->
                 <canvas id="canvas"></canvas>
             </div>
         </div>
+
+        <!-- Menu to contain table to edit values -->
         <div class="container" id="nav-edit-div" style="display: none;">
-            <div class="header">The Slidinator&reg;</div>
+            <!-- Table with editable values -->
             <div style="display: inline-block;">
                 <table class="info">
                     <tr>
@@ -87,14 +99,16 @@
                         <td><input class="edit-input" id="spring_constant" type="number"></td>
                     </tr>
                     <tr>
-                        <th>Chip Mass (g)</th>
+                        <th>Chip Mass (kg)</th>
                         <td><input class="edit-input" id="chip_mass" type="number"></td>
                     </tr>
                     <tr>
-                        <th>EF Chip Mass (g)</th>
+                        <th>EF Chip Mass (kg)</th>
                         <td><input class="edit-input" id="ef_chip_mass" type="number"></td>
                     </tr>
                 </table>
+
+                <!-- Button to reset all values -->
                 <button onclick="resetStorage()">Reset Values</button>
             </div>
         </div>
