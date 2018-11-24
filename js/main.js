@@ -4,6 +4,7 @@
  */
 
 // An array of all possible locations on the board
+// Units in centimeters
 var locs={A1:{x:12.5,y:62.5},A2:{x:37.5,y:62.5},A3:{x:62.5,y:62.5},B1:{x:12.5,y:87.5},B2:{x:37.5,y:87.5},B3:{x:62.5,y:87.5},C1:{x:12.5,y:112.5},C2:{x:37.5,y:112.5},C3:{x:62.5,y:112.5},D1:{x:12.5,y:137.5},D2:{x:37.5,y:137.5},D3:{x:62.5,y:137.5},EF:{x:37.5,y:100}};
 
 // Constant values that will never change
@@ -147,7 +148,7 @@ class Computations {
     angleToLoc(loc) {
         var loc = locs[loc.toUpperCase()];
         // arctan(delta y / delta x)
-        return 90 - Math.atan(Math.abs((loc.y - origin.y) / (loc.x - origin.x))) * 180 / Math.PI;
+        return 90 - Math.atan(Math.abs((loc.y - origin.y) / (loc.x - origin.x))) * (180 / Math.PI);
     }
 };
 // Initialize the computations constant

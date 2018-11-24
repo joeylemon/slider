@@ -43,6 +43,7 @@ body {
     background-color: #fff;
     z-index: 11;
     text-align: center;
+    padding-bottom: calc(env(safe-area-inset-bottom) / 2);
 }
 
 .nav .nav-block {
@@ -86,6 +87,7 @@ body {
     margin-bottom: 20px;
     text-align: center;
     box-shadow: 1px 3px 5px rgba(0,0,0,0.3);
+    padding-top: env(safe-area-inset-top);
 }
 
 .board-container {
@@ -201,8 +203,8 @@ body {
 button {
     width: 335px;
     height: 60px;
-    font-family: roboto;
-    font-size: 30px;
+    font-family: lemon;
+    font-size: 26px;
     text-align: center;
     margin-top: 15px;
     background: #fff;

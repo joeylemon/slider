@@ -7,7 +7,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
     try {
-        window.plugins.webviewcolor.change('#FF8200');
+        window.plugins.webviewcolor.change('#000000');
     } catch (e) {}
 }
 
