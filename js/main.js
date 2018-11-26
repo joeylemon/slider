@@ -94,7 +94,7 @@ class Computations {
             // and conservation of momentum since there is a collision
 
             // The intended location where the ef chip will come to rest
-            var target = {x: 37.5, y: 140};
+            var target = {x: 37.5, y: 137.5};
 
             // Get the distance the ef chip needs to move
             var ef_move_dist = Converter.cmToM(this.distance(locs.EF, target));
