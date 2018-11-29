@@ -8,11 +8,13 @@
 var locs={A1:{x:12.5,y:62.5},A2:{x:37.5,y:62.5},A3:{x:62.5,y:62.5},B1:{x:12.5,y:87.5},B2:{x:37.5,y:87.5},B3:{x:62.5,y:87.5},C1:{x:12.5,y:112.5},C2:{x:37.5,y:112.5},C3:{x:62.5,y:112.5},D1:{x:12.5,y:137.5},D2:{x:37.5,y:137.5},D3:{x:62.5,y:137.5},EF:{x:37.5,y:100}};
 
 // Constant values that will never change
-var chip_diameter = 3.96875; // cm
+var chip_diameter = 3.9; // cm
 var origin = {
     x: 37.5,
-    y: 25 - chip_diameter
+    y: 25 - (chip_diameter / 2)
 };
+
+// Gravity constant in Knoxville
 var gravity = 9.79729;
 
 // Values used in calculations
