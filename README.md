@@ -17,4 +17,4 @@ Our device consisted of a base plate and a tube which held a spring. The tube ha
 ## The App
 The app took all of the project requirements and put them into a user-friendly interface. In order to calibrate the device, the user simply needed to tap the area he/she wanted to shoot the chip towards.
 
-<img src="https://i.imgur.com/hE79oqs.png" width="350">
+<img src="https://i.imgur.com/NfjCDM8.png" width="350">
