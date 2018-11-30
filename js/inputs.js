@@ -1,6 +1,9 @@
 /**
  * @file Listens for user's inputs on the board to perform calculations
  * @author Joey Lemon
+ * 
+ * EF 151: Team C216-2
+ * Joey Lemon, Nicholas Crowder, William Ring, Alawy Alshakhouri
  */
 
 document.addEventListener("deviceready", onDeviceReady, false);

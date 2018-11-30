@@ -1,6 +1,9 @@
 /**
  * @file Performs calculations on user's inputs to return device settings
  * @author Joey Lemon
+ * 
+ * EF 151: Team C216-2
+ * Joey Lemon, Nicholas Crowder, William Ring, Alawy Alshakhouri
  */
 
 // An array of all possible locations on the board

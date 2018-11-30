@@ -1,6 +1,9 @@
 /**
  * @file Handles the graphics overlay on the board
  * @author Joey Lemon
+ * 
+ * EF 151: Team C216-2
+ * Joey Lemon, Nicholas Crowder, William Ring, Alawy Alshakhouri
  */
 
 // Get optimal pixel ratio for current device

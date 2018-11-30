@@ -1,6 +1,9 @@
 /**
  * @file Handles the edit menu, allowing user to edit values used in calculations
  * @author Joey Lemon
+ * 
+ * EF 151: Team C216-2
+ * Joey Lemon, Nicholas Crowder, William Ring, Alawy Alshakhouri
  */
 
 // Listen for nav bar touch to change menu
