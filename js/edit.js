@@ -10,21 +10,32 @@
 var touchmove;
 $('#nav-slider, #nav-edit').on('touchend', function (e) {
     if (!touchmove) {
-        var other = "nav-edit";
-        if(this.id == "nav-edit") {
-            other = "nav-slider";
-        }
-        $("#" + this.id + "-div").show();
-        $("#" + other + "-div").hide();
-
-        $(this).addClass("active");
-        $("#" + other).removeClass("active");
+        changeMenu(this);
     }
 }).on('touchmove', function (e) {
     touchmove = true;
 }).on('touchstart', function (e) {
     touchmove = false;
 });
+
+// Listen for nav bar click
+// Used when user is on a desktop
+$('#nav-slider, #nav-edit').on('click', function (e) {
+    changeMenu(this);
+});
+
+// Change the menu based on the current element
+function changeMenu(elem) {
+    var other = "nav-edit";
+    if(elem.id == "nav-edit") {
+        other = "nav-slider";
+    }
+    $("#" + elem.id + "-div").show();
+    $("#" + other + "-div").hide();
+
+    $(elem).addClass("active");
+    $("#" + other).removeClass("active");
+}
 
 // Save the original values we have calculated
 // Used when user resets custom values

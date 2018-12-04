@@ -17,19 +17,27 @@ function onDeviceReady() {
 var touchmoved;
 $('td, .ef-chip').on('touchend', function (e) {
     if (!touchmoved) {
-        var loc = $(this).html();
-
-        try{
-            $("#dist").html(Calculations.distanceToLoc(loc).toFixed(3) + " cm");
-            $("#angle").html(Calculations.angleToLoc(loc).toFixed(3) + "&deg;");
-            $("#deflection").html(Calculations.deflectionToLoc(loc).toFixed(3) + " mm");
-            drawToLoc(loc);
-        }catch(ex){
-            console.log("Not a location.");
-        }
+        zoneSelect(this);
     }
 }).on('touchmove', function (e) {
     touchmoved = true;
 }).on('touchstart', function (e) {
     touchmoved = false;
 });
+
+$('td, .ef-chip').on('click', function (e) {
+    zoneSelect(this);
+});
+
+function zoneSelect(elem) {
+    var loc = $(elem).html();
+
+    try{
+        $("#dist").html(Calculations.distanceToLoc(loc).toFixed(3) + " cm");
+        $("#angle").html(Calculations.angleToLoc(loc).toFixed(3) + "&deg;");
+        $("#deflection").html(Calculations.deflectionToLoc(loc).toFixed(3) + " mm");
+        drawToLoc(loc);
+    }catch(ex){
+        console.log("Not a location.");
+    }
+}
